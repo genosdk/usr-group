@@ -18,10 +18,10 @@ body {
   min-height: 100%;
   margin: 0;
   background-color: #171918;
-  background-image: url("./assets/paper-reference-photo.webp");
-  background-repeat: repeat;
+  background-image: url("./assets/paper-strip-02-matte-v3.png");
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: 238px 1024px;
+  background-size: cover;
   background-attachment: fixed;
 }
 
@@ -239,18 +239,32 @@ h1 {
 .selector::before {
   content: "";
   position: absolute;
-  left: 73%;
-  top: 18.5%;
+  left: 73.04%;
+  top: 15.85%;
   width: .62cqw;
   height: .62cqw;
   border-radius: 50%;
-  background: #4b100e;
-  box-shadow: inset 0 .06cqw .08cqw #170302;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
 }
 
 .selector.is-active::before {
+  opacity: 1;
   background: #ff3029;
   box-shadow: 0 0 .65cqw .18cqw rgba(255, 44, 37, .72);
+}
+
+.selector[data-project="photon"]:not(.is-active)::before {
+  opacity: 1;
+  background: #4b100e;
+  box-shadow:
+    0 0 .28cqw .12cqw rgba(43, 45, 44, .94),
+    inset 0 .06cqw .08cqw #170302;
+}
+
+.selector[data-project="photon"].is-active::before {
+  opacity: 0;
 }
 
 .selector:focus-visible {
