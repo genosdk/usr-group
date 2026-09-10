@@ -264,9 +264,3 @@ h1 {
   outline: .12cqw solid rgba(255, 78, 68, .92);
   outline-offset: -.8cqw;
 }
-
-@media (max-aspect-ratio: 16 / 9) {
-  body {
-    place-items: start center;
-  }
-}
