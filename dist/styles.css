@@ -17,10 +17,12 @@ body {
   min-width: 320px;
   min-height: 100%;
   margin: 0;
-  background-color: #292b2a;
-  background-image: url("./assets/paper-stripe-04.png");
-  background-repeat: repeat;
-  background-size: 400px 920px;
+  background-color: #171918;
+  background-image: url("./assets/paper-fine-matte.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 body {
@@ -237,7 +239,7 @@ h1 {
   content: "";
   position: absolute;
   left: 73%;
-  top: 5%;
+  top: 18.5%;
   width: .62cqw;
   height: .62cqw;
   border-radius: 50%;
