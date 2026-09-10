@@ -18,10 +18,6 @@ body {
   min-height: 100%;
   margin: 0;
   background-color: #171918;
-  background-image: url("./assets/paper-strip-02-matte-v3.png?v=20260910-2");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 body {
@@ -32,6 +28,15 @@ body {
   overflow: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #171918 url("./assets/paper-strip-02-matte-v3.png?v=20260910-3") center / cover no-repeat;
+}
+
 button,
 a {
   font: inherit;
@@ -39,6 +44,7 @@ a {
 
 .artboard {
   position: relative;
+  z-index: 1;
   container-type: inline-size;
   width: min(100vw, 136.626vh, 1466px);
   width: min(100vw, 136.626dvh, 1466px);
