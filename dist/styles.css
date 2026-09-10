@@ -28,13 +28,19 @@ body {
   overflow: hidden;
 }
 
-body::before {
-  content: "";
+.page-texture {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   z-index: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
-  background: #171918 url("./assets/paper-strip-02-matte-v3.png?v=20260910-3") center / cover no-repeat;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 button,
