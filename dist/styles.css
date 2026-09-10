@@ -18,10 +18,10 @@ body {
   min-height: 100%;
   margin: 0;
   background-color: #171918;
-  background-image: url("./assets/paper-fine-matte.png");
-  background-repeat: no-repeat;
+  background-image: url("./assets/paper-reference-photo.webp");
+  background-repeat: repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 238px 1024px;
   background-attachment: fixed;
 }
 
@@ -40,10 +40,9 @@ a {
 
 .artboard {
   position: relative;
-  container-type: inline-size;
-  width: min(100vw, 136.626vh, 1466px);
-  width: min(100vw, 136.626dvh, 1466px);
-  aspect-ratio: 1466 / 1073;
+  width: min(100vw, 177.778vh, 1920px);
+  width: min(100vw, 177.778dvh, 1920px);
+  aspect-ratio: 16 / 9;
   flex: none;
 }
 
@@ -54,6 +53,15 @@ a {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+.console-ui {
+  position: absolute;
+  left: 11.8229167%;
+  top: .2777778%;
+  width: 76.3541667%;
+  height: 99.3518519%;
+  container-type: inline-size;
 }
 
 .screen {
@@ -257,7 +265,7 @@ h1 {
   outline-offset: -.8cqw;
 }
 
-@media (max-aspect-ratio: 1466 / 1073) {
+@media (max-aspect-ratio: 16 / 9) {
   body {
     place-items: start center;
   }
