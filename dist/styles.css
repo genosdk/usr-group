@@ -26,9 +26,9 @@ body {
 
 .artboard {
   position: relative;
-  width: min(100vw, 159.879vh, 1586px);
-  width: min(100vw, 159.879dvh, 1586px);
-  aspect-ratio: 1586 / 992;
+  width: min(100vw, 136.724vh, 1586px);
+  width: min(100vw, 136.724dvh, 1586px);
+  aspect-ratio: 1586 / 1160;
 }
 
 .master-art {
@@ -57,24 +57,24 @@ body {
 
 .hotspot-source {
   left: 72.6%;
-  top: 67.4%;
+  top: 57.6%;
   width: 12.4%;
-  height: 5.4%;
+  height: 4.6%;
 }
 
 .hotspot-photon {
   left: 18.1%;
-  top: 84.7%;
+  top: 72.4%;
   width: 7.6%;
-  height: 11.5%;
+  height: 9.8%;
   border-radius: 50%;
 }
 
 .hotspot-src {
   left: 41.5%;
-  top: 84.7%;
+  top: 72.4%;
   width: 7.6%;
-  height: 11.5%;
+  height: 9.8%;
   border-radius: 50%;
 }
 
@@ -83,7 +83,7 @@ body {
   outline-offset: 2px;
 }
 
-@media (max-aspect-ratio: 1586 / 992) {
+@media (max-aspect-ratio: 1586 / 1160) {
   body {
     place-items: start center;
   }
