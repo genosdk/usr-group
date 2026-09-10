@@ -2,59 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#252629">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#1a1b1b">
   <meta name="description" content="USR — independent research into undocumented systems, firmware, and electronic instruments.">
   <title>USR — Undocumented Systems Research</title>
+  <link rel="preload" href="./assets/usr-console-master.png" as="image" type="image/png">
   <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
 </head>
 <body>
-  <main class="instrument" aria-label="USR research console">
-    <span class="screw nw" aria-hidden="true"></span><span class="screw ne" aria-hidden="true"></span>
-    <span class="screw sw" aria-hidden="true"></span><span class="screw se" aria-hidden="true"></span>
-    <span class="acrylic-glint" aria-hidden="true"></span>
+  <main class="artboard" aria-label="USR research console">
+    <img
+      class="master-art"
+      src="./assets/usr-console-master.png"
+      width="1586"
+      height="992"
+      alt="USR Undocumented Systems Research console featuring the Photon firmware project"
+      draggable="false"
+    >
 
-    <header class="panel-header">
-      <a class="wordmark" href="#console" aria-label="USR home">USR</a>
-      <div class="identity"><p>UNDOCUMENTED SYSTEMS RESEARCH</p><p>FIRMWARE · SYSTEMS · AUDIO</p></div>
-      <div class="power"><span aria-hidden="true"></span>ONLINE</div>
-    </header>
-
-    <section class="display-bezel" id="console" aria-label="Research terminal display">
-      <div class="oled">
-        <div class="scanlines" aria-hidden="true"></div>
-        <header class="oled-status">
-          <span>USR/GROUP</span><span>PROGRAM <b id="project-index">01</b></span><time id="utc-clock">00:00:00 UTC</time>
-        </header>
-        <div class="oled-body" aria-live="polite">
-          <p class="command"><span>usr@group:~$</span> inspect <b id="project-command">photon</b></p>
-          <div class="project-row">
-            <div><h1 id="project-name">PHOTON</h1><p class="hostname" id="project-path">photon.usr.group</p></div>
-            <p class="state" id="project-state">ACTIVE RESEARCH</p>
-          </div>
-          <div class="signal-rule" aria-hidden="true"><span></span></div>
-          <p class="description" id="project-description">Alternate firmware research for the Elektron Analog Rytm MKII. Mapping the machine below its documented interface and building a new operating layer from first principles.</p>
-          <div class="oled-footer">
-            <p id="project-tags">FIRMWARE / REVERSE ENGINEERING / AUDIO</p>
-            <a id="project-action" href="https://github.com/genosdk/analog-rytm-mkii-research" target="_blank" rel="noreferrer"><span id="project-action-label">VIEW SOURCE</span> ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="control-bank" aria-label="Research namespaces">
-      <p class="bank-label">PROGRAM SELECT</p>
-      <nav class="programs">
-        <button class="entry is-active" type="button" data-index="01" data-name="PHOTON" data-path="photon.usr.group" data-state="ACTIVE RESEARCH" data-description="Alternate firmware research for the Elektron Analog Rytm MKII. Mapping the machine below its documented interface and building a new operating layer from first principles." data-tags="FIRMWARE / REVERSE ENGINEERING / AUDIO" data-url="https://github.com/genosdk/analog-rytm-mkii-research" data-action="VIEW SOURCE" aria-pressed="true"><span class="lamp"></span><span class="button-cap"></span><strong>PHOTON</strong><em>01</em></button>
-        <button class="entry" type="button" data-index="02" data-name="SUDO" data-path="sudo.usr.group" data-state="RESTRICTED" data-description="Controlled access to beta firmware, test procedures, and reports from trusted operators." data-tags="BETA / TESTERS / REPORTS" aria-pressed="false"><span class="lamp"></span><span class="button-cap"></span><strong>SUDO</strong><em>02</em></button>
-        <button class="entry" type="button" data-index="03" data-name="SRC" data-path="src.usr.group" data-state="PUBLIC INDEX" data-description="Source repositories, utilities, experiments, and reproducible artifacts released by the group." data-tags="GIT / TOOLS / RELEASES" data-url="https://github.com/genosdk" data-action="OPEN GITHUB" aria-pressed="false"><span class="lamp"></span><span class="button-cap"></span><strong>SRC</strong><em>03</em></button>
-        <button class="entry" type="button" data-index="04" data-name="MAN" data-path="man.usr.group" data-state="IN PREPARATION" data-description="Field manuals, protocol notes, build instructions, and technical references written for operators." data-tags="MANUALS / PROTOCOLS / NOTES" aria-pressed="false"><span class="lamp"></span><span class="button-cap"></span><strong>MAN</strong><em>04</em></button>
-        <button class="entry" type="button" data-index="05" data-name="LAB" data-path="lab.usr.group" data-state="LIVE WORK" data-description="Active traces, unresolved questions, hardware observations, and experiments not yet promoted to documentation." data-tags="EXPERIMENTS / TRACES / WORKLOG" aria-pressed="false"><span class="lamp"></span><span class="button-cap"></span><strong>LAB</strong><em>05</em></button>
-        <button class="entry" type="button" data-index="06" data-name="ARCHIVE" data-path="archive.usr.group" data-state="PRESERVED" data-description="Stable findings, recovered knowledge, superseded methods, and reference material kept addressable over time." data-tags="FINDINGS / HISTORY / REFERENCE" aria-pressed="false"><span class="lamp"></span><span class="button-cap"></span><strong>ARCHIVE</strong><em>06</em></button>
-      </nav>
-    </section>
-    <footer class="panel-footer"><p>RESEARCH CONSOLE / REV. 01</p><p>© <span id="year"></span> USR · DOCUMENTATION BEGINS WHERE THE MANUAL ENDS</p></footer>
+    <nav class="hotspots" aria-label="USR project links">
+      <a class="hotspot hotspot-source" href="https://github.com/genosdk/analog-rytm-mkii-research" target="_blank" rel="noreferrer" aria-label="View Photon source"></a>
+      <a class="hotspot hotspot-photon" href="https://github.com/genosdk/analog-rytm-mkii-research" target="_blank" rel="noreferrer" aria-label="Photon project"></a>
+      <a class="hotspot hotspot-src" href="https://github.com/genosdk" target="_blank" rel="noreferrer" aria-label="USR source repositories"></a>
+    </nav>
   </main>
 </body>
 </html>
