@@ -43,6 +43,7 @@ body {
   display: block;
   object-fit: cover;
   object-position: center;
+  filter: brightness(.75);
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
