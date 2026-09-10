@@ -33,21 +33,6 @@ body {
   background: transparent;
 }
 
-.page-texture {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  z-index: 0;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
 button,
 a {
   font: inherit;
@@ -57,9 +42,9 @@ a {
   position: relative;
   z-index: 1;
   container-type: inline-size;
-  width: min(100vw, 136.626vh, 1466px);
-  width: min(100vw, 136.626dvh, 1466px);
-  aspect-ratio: 1466 / 1073;
+  width: min(100vw, 177.778vh, 1920px);
+  width: min(100vw, 177.778dvh, 1920px);
+  aspect-ratio: 16 / 9;
   flex: none;
 }
 
@@ -68,17 +53,18 @@ a {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  clip-path: inset(5.219% 8.936% 8.388% 8.8% round 1.5%);
   user-select: none;
   -webkit-user-drag: none;
 }
 
 .screen {
   position: absolute;
-  left: 15.25%;
-  top: 23.48%;
+  left: 23.47%;
+  top: 23.66%;
   width: 69.5%;
-  height: 42.1%;
+  height: 54.78%;
+  transform: scale(.763542);
+  transform-origin: top left;
   overflow: hidden;
   border: 1px solid #3a2524;
   background: #080303;
@@ -238,9 +224,9 @@ h1 {
 .selector {
   position: absolute;
   left: var(--x);
-  top: 72.4%;
-  width: 9%;
-  height: 15.2%;
+  top: 72.26%;
+  width: 6.87%;
+  height: 15.1%;
   margin: 0;
   padding: 0;
   border: 0;
@@ -257,8 +243,8 @@ h1 {
   position: absolute;
   left: 73.04%;
   top: 15.85%;
-  width: .62cqw;
-  height: .62cqw;
+  width: .473cqw;
+  height: .473cqw;
   border-radius: 50%;
   background: transparent;
   box-shadow: none;
@@ -268,15 +254,15 @@ h1 {
 .selector.is-active::before {
   opacity: 1;
   background: #ff3029;
-  box-shadow: 0 0 .65cqw .18cqw rgba(255, 44, 37, .72);
+  box-shadow: 0 0 .496cqw .137cqw rgba(255, 44, 37, .72);
 }
 
 .selector[data-project="photon"]:not(.is-active)::before {
   opacity: 1;
   background: #4b100e;
   box-shadow:
-    0 0 .28cqw .12cqw rgba(43, 45, 44, .94),
-    inset 0 .06cqw .08cqw #170302;
+    0 0 .214cqw .092cqw rgba(43, 45, 44, .94),
+    inset 0 .046cqw .061cqw #170302;
 }
 
 .selector[data-project="photon"].is-active::before {
@@ -284,6 +270,10 @@ h1 {
 }
 
 .selector:focus-visible {
-  outline: .12cqw solid rgba(255, 78, 68, .92);
-  outline-offset: -.8cqw;
+  outline: .092cqw solid rgba(255, 78, 68, .92);
+  outline-offset: -.611cqw;
+}
+
+body[data-project="photon"] .screen {
+  visibility: hidden;
 }

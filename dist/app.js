@@ -68,6 +68,7 @@ const output = {
 
 function selectProject(key, updateHash = true) {
   const project = projects[key] || projects.photon;
+  document.body.dataset.project = key;
   selectors.forEach((selector) => {
     const active = selector.dataset.project === key;
     selector.classList.toggle("is-active", active);
