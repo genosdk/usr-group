@@ -96,10 +96,12 @@ a {
   color: #ff4b41;
   font-family: var(--mono);
   font-weight: 700;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
   text-shadow:
-    0 0 .025cqw rgba(255, 225, 220, .76),
-    0 0 .11cqw rgba(255, 58, 48, .72),
-    0 0 .24cqw rgba(255, 28, 22, .22);
+    0 0 .018cqw rgba(255, 225, 220, .66),
+    0 0 .065cqw rgba(255, 58, 48, .48),
+    0 0 .13cqw rgba(255, 28, 22, .1);
 }
 
 .screen-status {
@@ -167,9 +169,9 @@ h1 {
   letter-spacing: -.07em;
   white-space: nowrap;
   text-shadow:
-    0 0 .04cqw rgba(255, 235, 228, .86),
-    0 0 .16cqw rgba(255, 65, 54, .78),
-    0 0 .39cqw rgba(255, 29, 22, .28);
+    0 0 .035cqw rgba(255, 235, 228, .88),
+    0 0 .12cqw rgba(255, 65, 54, .72),
+    0 0 .3cqw rgba(255, 29, 22, .22);
 }
 
 .hostname {
@@ -285,22 +287,6 @@ h1 {
   z-index: 1;
 }
 
-.selector[data-project="photon"]::after {
-  content: "";
-  position: absolute;
-  left: calc(73.04% - .614cqw);
-  top: calc(15.85% - .614cqw);
-  width: 1.7cqw;
-  height: 1.7cqw;
-  border-radius: 50%;
-  background-image: url("./assets/usr-console-oled-etched-alpha-1920.png");
-  background-repeat: no-repeat;
-  background-size: 100cqw 56.25cqw;
-  background-position: -46.4045cqw -41.378cqw;
-  -webkit-mask-image: radial-gradient(circle, #000 0 52%, rgba(0, 0, 0, .92) 67%, transparent 86%);
-  mask-image: radial-gradient(circle, #000 0 52%, rgba(0, 0, 0, .92) 67%, transparent 86%);
-}
-
 .program-number-mask {
   position: absolute;
   left: var(--x);
@@ -309,7 +295,7 @@ h1 {
   height: 1.04cqw;
   transform: translateX(-50%);
   border-radius: 50%;
-  background-image: url("./assets/usr-console-oled-etched-alpha-1920.png");
+  background-image: url("./assets/usr-console-oled-etched-alpha-1920-ledclean.png");
   background-repeat: no-repeat;
   background-size: 100cqw 56.25cqw;
   background-position: calc(1.275cqw - var(--x)) -47.85cqw;
@@ -324,7 +310,11 @@ h1 {
 }
 
 .selector[data-project="photon"]:not(.is-active)::before {
-  opacity: 0;
+  opacity: 1;
+  background: radial-gradient(circle at 42% 36%, #941712 0 13%, #720c09 30%, #4b0504 68%, #260101 100%);
+  box-shadow:
+    0 0 0 .035cqw rgba(28, 21, 21, .62),
+    inset 0 .042cqw .056cqw rgba(132, 31, 26, .52);
 }
 
 .selector:focus-visible {
