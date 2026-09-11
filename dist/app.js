@@ -131,6 +131,7 @@ const spectrumHistory = [];
 const spectrumRows = 34;
 const spectrumBins = 72;
 let lastSpectrumSample = 0;
+let previousRawSpectrum = Array(spectrumBins).fill(0);
 
 const palette = [
   [0, [18, 7, 46]],
@@ -164,8 +165,8 @@ function initializeAudioGraph() {
   if (!AudioEngine) return;
   audioContext = new AudioEngine();
   analyser = audioContext.createAnalyser();
-  analyser.fftSize = 4096;
-  analyser.smoothingTimeConstant = .76;
+  analyser.fftSize = 2048;
+  analyser.smoothingTimeConstant = .48;
   analyser.minDecibels = -95;
   analyser.maxDecibels = -10;
   frequencyData = new Uint8Array(analyser.frequencyBinCount);
@@ -185,14 +186,27 @@ function currentSpectrum(time) {
 
   analyser.getByteFrequencyData(frequencyData);
   const nyquist = audioContext.sampleRate / 2;
-  return Array.from({ length: spectrumBins }, (_, index) => {
+  const raw = Array.from({ length: spectrumBins }, (_, index) => {
     const position = index / (spectrumBins - 1);
     const frequency = 28 * Math.pow(nyquist / 28, position);
     const center = Math.max(1, Math.min(frequencyData.length - 2, Math.round(frequency / nyquist * frequencyData.length)));
-    const energy = (frequencyData[center - 1] + frequencyData[center] * 2 + frequencyData[center + 1]) / (4 * 255);
-    const edgeTaper = Math.pow(Math.sin(Math.PI * position), .22);
-    return Math.min(1, Math.pow(energy, .95) * 1.08 * edgeTaper);
+    return (frequencyData[center - 1] + frequencyData[center] * 2 + frequencyData[center + 1]) / (4 * 255);
   });
+
+  const focusedSpectrum = raw.map((energy, index) => {
+    const position = index / (spectrumBins - 1);
+    const from = Math.max(0, index - 4);
+    const to = Math.min(spectrumBins, index + 5);
+    const localMean = raw.slice(from, to).reduce((sum, value) => sum + value, 0) / (to - from);
+    const detail = Math.max(0, energy - localMean);
+    const attack = Math.max(0, energy - previousRawSpectrum[index]);
+    const focused = Math.pow(Math.max(0, (energy - .16) / .84), 1.7);
+    const magnified = focused * .72 + detail * 2 + attack * 2.8;
+    const edgeTaper = Math.pow(Math.sin(Math.PI * position), .45);
+    return Math.min(1, magnified * 1.05 * edgeTaper);
+  });
+  previousRawSpectrum = raw;
+  return focusedSpectrum;
 }
 
 function renderSpectrum(time) {
@@ -221,7 +235,7 @@ function renderSpectrum(time) {
     const horizontal = bin / (spectrumBins - 1) - .5;
     return [
       bounds.width * .5 + horizontal * bounds.width * .94 * perspective,
-      bounds.height * .95 - depth * bounds.height * .28 - level * bounds.height * .76 * perspective
+      bounds.height * .95 - depth * bounds.height * .28 - level * bounds.height * .92 * perspective
     ];
   };
 

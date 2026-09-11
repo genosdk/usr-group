@@ -74,13 +74,13 @@ a {
   container-type: inline-size;
   width: min(70vw, 124.444dvh, 1344px);
   aspect-ratio: 16 / 9;
-  margin: max(.5rem, 1.5dvh) auto 0;
+  margin: clamp(4.5rem, 11dvh, 7.5rem) auto 0;
 }
 
 .audio-control {
   position: fixed;
   top: clamp(1rem, 2.2vw, 2rem);
-  left: clamp(1rem, 2.2vw, 2rem);
+  right: clamp(2.5rem, 4vw, 5rem);
   z-index: 4;
   display: grid;
   place-items: center;
@@ -132,9 +132,9 @@ a {
 .spectrogram {
   position: absolute;
   left: 50%;
-  bottom: clamp(1.5rem, 2.5dvh, 2.25rem);
-  width: min(58vw, 70rem);
-  height: min(24dvh, 16.25rem);
+  bottom: clamp(1.25rem, 2dvh, 2rem);
+  width: min(52vw, 62rem);
+  height: min(15.5dvh, 10.5rem);
   transform: translateX(-50%);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -417,7 +417,11 @@ h1 {
     top: calc(4.25rem + 54vw);
     bottom: auto;
     width: 92vw;
-    height: min(28vh, 14rem);
+    height: min(24vh, 12rem);
+  }
+
+  .audio-control {
+    right: 1rem;
   }
 }
 
