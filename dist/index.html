@@ -25,12 +25,17 @@
   <link rel="preload" href="./assets/usr-console-oled-etched-alpha-1920-ledclean.png" as="image" type="image/png">
   <link rel="preload" href="./assets/paper-strip-02-matte-hires-3840.png" as="image" type="image/png">
   <link rel="preload" href="./assets/DejaVuSansMono-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="./styles.css?v=20260911-3">
-  <script src="./app.js" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20260911-4">
+  <script src="./app.js?v=20260911-1" defer></script>
 </head>
-<body data-project="photon">
+<body data-project="photon" data-audio-src="./assets/skanna.mp3">
   <img class="page-texture" src="./assets/paper-strip-02-matte-hires-3840.png" alt="" aria-hidden="true">
-  <main class="artboard" aria-label="USR research console">
+  <button class="audio-control" id="audio-control" type="button" aria-label="Play audio" aria-pressed="false">
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.8v12.4L18 12 8 5.8Z"/></svg>
+    <svg class="icon-stop" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx=".7"/></svg>
+  </button>
+  <main class="stage" aria-label="USR research console and audio spectrum">
+  <section class="artboard" aria-label="USR research console">
     <img
       class="master-art"
       src="./assets/usr-console-oled-etched-alpha-1920-ledclean.png"
@@ -78,6 +83,11 @@
       <span class="program-number-mask" style="--x:63.155cqw" aria-hidden="true"></span>
       <span class="program-number-mask" style="--x:72.085cqw" aria-hidden="true"></span>
     </nav>
+  </section>
+  <section class="spectrogram" aria-label="Live audio spectrogram">
+    <canvas id="spectrum-canvas"></canvas>
+  </section>
   </main>
+  <audio id="site-audio" loop preload="auto" playsinline aria-hidden="true"></audio>
 </body>
 </html>

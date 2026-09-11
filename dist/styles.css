@@ -34,8 +34,6 @@ html {
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   isolation: isolate;
   background: transparent;
@@ -62,14 +60,92 @@ a {
   font: inherit;
 }
 
-.artboard {
+.stage {
   position: relative;
   z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.artboard {
+  position: relative;
   container-type: inline-size;
-  width: min(100vw, 177.778vh, 1920px);
-  width: min(100vw, 177.778dvh, 1920px);
+  width: min(70vw, 124.444dvh, 1344px);
   aspect-ratio: 16 / 9;
-  flex: none;
+  margin: max(.5rem, 1.5dvh) auto 0;
+}
+
+.audio-control {
+  position: fixed;
+  top: clamp(1rem, 2.2vw, 2rem);
+  left: clamp(1rem, 2.2vw, 2rem);
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: clamp(2.6rem, 3.2vw, 3.5rem);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(255, 74, 63, .42);
+  border-radius: 50%;
+  background: rgba(6, 4, 5, .68);
+  color: #ff4b41;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+}
+
+.audio-control svg {
+  width: 44%;
+  height: 44%;
+  fill: currentColor;
+  filter: drop-shadow(0 0 .24rem rgba(255, 52, 43, .58));
+}
+
+.audio-control .icon-stop,
+.audio-control.is-playing .icon-play {
+  display: none;
+}
+
+.audio-control.is-playing .icon-stop {
+  display: block;
+}
+
+.audio-control:hover,
+.audio-control:focus-visible {
+  border-color: rgba(255, 92, 80, .88);
+  background: rgba(20, 4, 5, .82);
+  outline: 0;
+}
+
+.audio-control.is-blocked {
+  animation: audio-prompt 2.4s ease-in-out infinite;
+}
+
+@keyframes audio-prompt {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 0 0 0 rgba(255,55,46,0); }
+  50% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 0 1.1rem .12rem rgba(255,55,46,.34); }
+}
+
+.spectrogram {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.5rem, 2.5dvh, 2.25rem);
+  width: min(58vw, 70rem);
+  height: min(24dvh, 16.25rem);
+  transform: translateX(-50%);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.spectrogram canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 .8rem rgba(220, 47, 89, .22));
 }
 
 .master-art {
@@ -320,4 +396,33 @@ h1 {
 .selector:focus-visible {
   outline: .092cqw solid rgba(255, 78, 68, .92);
   outline-offset: -.611cqw;
+}
+
+@media (max-width: 720px), (max-aspect-ratio: 4 / 5) {
+  body {
+    overflow-y: auto;
+  }
+
+  .stage {
+    min-height: 100dvh;
+    padding-top: 4.25rem;
+  }
+
+  .artboard {
+    width: min(96vw, 1344px);
+    margin-top: 0;
+  }
+
+  .spectrogram {
+    top: calc(4.25rem + 54vw);
+    bottom: auto;
+    width: 92vw;
+    height: min(28vh, 14rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-control.is-blocked {
+    animation: none;
+  }
 }
