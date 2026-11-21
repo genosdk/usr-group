@@ -25,7 +25,7 @@
   <link rel="preload" href="./assets/usr-console-oled-etched-alpha-1920-ledclean.png" as="image" type="image/png">
   <link rel="preload" href="./assets/paper-strip-02-matte-hires-3840.png" as="image" type="image/png">
   <link rel="preload" href="./assets/DejaVuSansMono-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="./styles.css?v=20260911-5">
+  <link rel="stylesheet" href="./styles.css?v=20261121-1">
   <script src="./app.js?v=20260911-2" defer></script>
 </head>
 <body data-project="photon" data-audio-src="./assets/skanna.mp3">
@@ -35,6 +35,7 @@
     <svg class="icon-stop" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx=".7"/></svg>
   </button>
   <main class="stage" aria-label="USR research console and audio spectrum">
+  <div class="console">
   <section class="artboard" aria-label="USR research console">
     <img
       class="master-art"
@@ -84,6 +85,7 @@
       <span class="program-number-mask" style="--x:72.085cqw" aria-hidden="true"></span>
     </nav>
   </section>
+  </div>
   <section class="spectrogram" aria-label="Live audio spectrogram">
     <canvas id="spectrum-canvas"></canvas>
   </section>

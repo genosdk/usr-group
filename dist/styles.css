@@ -61,20 +61,49 @@ a {
 }
 
 .stage {
+  /* --v = rendered width of the VISIBLE console (alpha bbox 357,60 → 1564,981 of the 1920×1080 art).
+     Spectrogram box = .18·v tall; at rest it only draws its bottom band (.62h → .95h), and peaks
+     rise into the space above. Negative margins make the flex layout space the console and that
+     resting band, so top / between / bottom gaps are visually equal at every viewport size.
+     Height budget: .76305v + .0594v (band) + 3·(.1116v peak headroom + gap) → divisor 1.1562. */
+  --gap-min: 1.25rem;
+  --v: min(92vw, 1000px, calc((100vh - 3 * var(--gap-min)) / 1.1562));
+  --v: min(92vw, 1000px, calc((100svh - 3 * var(--gap-min)) / 1.1562));
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100svh;
   overflow: hidden;
 }
 
-.artboard {
+@supports (height: 100dvh) {
+  .stage {
+    --v: min(92vw, 1000px, calc((100dvh - 3 * var(--gap-min)) / 1.1562));
+    height: 100dvh;
+  }
+}
+
+/* Box the visible part of the art; the full artboard hangs inside it, offset by the transparent margins. */
+.console {
   position: relative;
+  flex: none;
+  width: var(--v);
+  height: calc(var(--v) * .76305);
+}
+
+.artboard {
+  position: absolute;
   container-type: inline-size;
-  width: min(70vw, 124.444dvh, 1344px);
-  aspect-ratio: 16 / 9;
-  margin: clamp(4.5rem, 11dvh, 7.5rem) auto 0;
+  left: calc(var(--v) * -.29578);
+  top: calc(var(--v) * -.04971);
+  width: calc(var(--v) * 1.59072);
+  height: calc(var(--v) * .89478);
+  margin: 0;
 }
 
 .audio-control {
@@ -130,12 +159,11 @@ a {
 }
 
 .spectrogram {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(1.25rem, 2dvh, 2rem);
-  width: min(52vw, 62rem);
-  height: min(15.5dvh, 10.5rem);
-  transform: translateX(-50%);
+  position: relative;
+  flex: none;
+  width: min(calc(var(--v) * 1.1), 96vw);
+  height: calc(var(--v) * .18);
+  margin: calc(var(--v) * -.1116) 0 calc(var(--v) * -.009);
   pointer-events: none;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -398,29 +426,9 @@ h1 {
   outline-offset: -.611cqw;
 }
 
-@media (max-width: 720px), (max-aspect-ratio: 4 / 5) {
-  body {
-    overflow-y: auto;
-  }
-
-  .stage {
-    min-height: 100dvh;
-    padding-top: 4.25rem;
-  }
-
-  .artboard {
-    width: min(96vw, 1344px);
-    margin-top: 0;
-  }
-
-  .spectrogram {
-    top: calc(4.25rem + 54vw);
-    bottom: auto;
-    width: 92vw;
-    height: min(24vh, 12rem);
-  }
-
+@media (max-width: 720px) {
   .audio-control {
+    top: 1rem;
     right: 1rem;
   }
 }
