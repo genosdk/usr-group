@@ -130,6 +130,7 @@ let frequencyData;
 const spectrumHistory = [];
 const spectrumRows = 34;
 const spectrumBins = 72;
+const spectrumTilt = .2;
 let lastSpectrumSample = 0;
 let previousRawSpectrum = Array(spectrumBins).fill(0);
 
@@ -188,9 +189,14 @@ function currentSpectrum(time) {
   const nyquist = audioContext.sampleRate / 2;
   const raw = Array.from({ length: spectrumBins }, (_, index) => {
     const position = index / (spectrumBins - 1);
-    const frequency = 28 * Math.pow(nyquist / 28, position);
+    // Compressed audio (MP3/AAC) is low-passed and carries little energy above ~12 kHz; bins above that stay dark.
+    const topFrequency = Math.min(nyquist, 12500);
+    const frequency = 28 * Math.pow(topFrequency / 28, position);
     const center = Math.max(1, Math.min(frequencyData.length - 2, Math.round(frequency / nyquist * frequencyData.length)));
-    return (frequencyData[center - 1] + frequencyData[center] * 2 + frequencyData[center + 1]) / (4 * 255);
+    const level = (frequencyData[center - 1] + frequencyData[center] * 2 + frequencyData[center + 1]) / (4 * 255);
+    // Music falls off ~3 dB/octave toward the treble, which left the right side of the
+    // spectrum dark and made the visual mass sit left of centre. Tilt it back up.
+    return Math.min(1, level + spectrumTilt * position);
   });
 
   const focusedSpectrum = raw.map((energy, index) => {
